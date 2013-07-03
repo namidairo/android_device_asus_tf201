@@ -97,11 +97,14 @@ PRODUCT_PACKAGES += \
     audio.usb.default \
     libaudioutils \
     libinvensense_mpl \
+    AutoParts_tfp \
     blobpack_tfp \
     mischelp \
     tinymix \
     tinyplay \
-    tinyrec
+    tinyrec \
+    com.cyanogenmod.asusdec \
+    libasusdec_jni
 
 # Build Some Extra Apps
 PRODUCT_PACKAGES += \
