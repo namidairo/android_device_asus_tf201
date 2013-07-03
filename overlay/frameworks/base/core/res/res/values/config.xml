@@ -93,6 +93,17 @@
          applied. -->
     <bool name="config_hasRemovableLid">true</bool>
 
+    <bool name="config_hasDockBattery">true</bool>
+
+    <string name="config_deviceHandlersLib" translatable="false">
+        /system/framework/com.cyanogenmod.asusdec.jar</string>
+
+    <string name="config_deviceDockBatteryHandlerClass" translatable="false">
+        com.cyanogenmod.asusdec.DockBatteryHandler</string>
+
+    <string name="config_deviceKeyHandlerClass" translatable="false">
+        com.cyanogenmod.asusdec.KeyHandler</string>
+
     <!-- Array of light sensor LUX values to define our levels for auto backlight brightness support.
          The N entries of this array define N + 1 zones as follows:
 
