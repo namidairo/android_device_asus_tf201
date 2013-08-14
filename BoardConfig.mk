@@ -24,7 +24,7 @@ DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay
 # Legacy CFLAGS
 COMMON_GLOBAL_CFLAGS += -DMR0_AUDIO_BLOB 
 
-# Board nameing
+# Board naming
 TARGET_NO_RADIOIMAGE := true
 TARGET_BOARD_PLATFORM := tegra
 TARGET_BOOTLOADER_BOARD_NAME := cardhu
@@ -35,16 +35,14 @@ TARGET_ARCH := arm
 TARGET_CPU_ABI := armeabi-v7a
 TARGET_CPU_ABI2 := armeabi
 TARGET_ARCH_VARIANT := armv7-a-neon
-TARGET_ARCH_VARIANT_CPU := cortex-a9
+TARGET_CPU_VARIANT := cortex-a9
 TARGET_CPU_SMP := true
-ARCH_ARM_HAVE_TLS_REGISTER := true
-ARCH_ARM_USE_NON_NEON_MEMCPY := true
 
 # Avoid the generation of ldrcc instructions
 NEED_WORKAROUND_CORTEX_A9_745320 := true
 
-# Boot/Recovery image settings  
-BOARD_KERNEL_CMDLINE := 
+# Boot/Recovery image settings
+BOARD_KERNEL_CMDLINE :=
 BOARD_KERNEL_BASE := 0x10000000
 BOARD_KERNEL_PAGESIZE :=
 
@@ -55,6 +53,7 @@ USE_OPENGL_RENDERER := true
 
 # Misc display settings
 BOARD_USE_SKIA_LCDTEXT := true
+BOARD_NO_ALLOW_DEQUEUE_CURRENT_BUFFER := true
 
 # Bluetooth
 BOARD_HAVE_BLUETOOTH := true
@@ -100,3 +99,15 @@ BOARD_HAS_NO_SELECT_BUTTON := true
 BOARD_HAS_LARGE_FILESYSTEM := true
 TARGET_RECOVERY_INITRC := device/asus/tf201/recovery/init.rc
 BOARD_HAS_SDCARD_INTERNAL := true
+TARGET_RECOVERY_FSTAB := device/asus/tf201/ramdisk/fstab.cardhu
+RECOVERY_FSTAB_VERSION := 2
+
+# SELINUX Defines
+BOARD_SEPOLICY_DIRS := \
+    device/asus/tf700t/selinux
+
+BOARD_SEPOLICY_UNION := \
+    file_contexts \
+    file.te \
+    device.te \
+    domain.te
