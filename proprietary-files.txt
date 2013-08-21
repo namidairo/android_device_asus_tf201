@@ -57,7 +57,6 @@ lib/libnvremotell.so
 lib/libcgdrv.so
 lib/libnvmmlite_image.so
 lib/libnvremoteprotocol.so
-lib/libEGL.so
 lib/libnvmmlite_msaudio.so
 lib/libnvrm_graphics.so
 
