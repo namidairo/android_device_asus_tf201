@@ -104,7 +104,7 @@ RECOVERY_FSTAB_VERSION := 2
 
 # SELINUX Defines
 BOARD_SEPOLICY_DIRS := \
-    device/asus/tf700t/selinux
+    device/asus/tf201/selinux
 
 BOARD_SEPOLICY_UNION := \
     file_contexts \
