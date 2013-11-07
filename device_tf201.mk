@@ -96,7 +96,7 @@ PRODUCT_PACKAGES += \
     audio.usb.default \
     libaudioutils \
     libinvensense_mpl \
-    AutoParts_tfp \
+ #   AutoParts_tfp \
     blobpack_tfp \
     mischelp \
     tinymix \
@@ -135,9 +135,6 @@ PRODUCT_COPY_FILES += \
 # media codec config xml file
 PRODUCT_COPY_FILES += \
     device/asus/tf201/media_codecs.xml:system/etc/media_codecs.xml
-
-PRODUCT_COPY_FILES += \
-    system/bluetooth/data/main.nonsmartphone.conf:system/etc/bluetooth/main.conf
 
 # audio policy configuration
 PRODUCT_COPY_FILES += \
