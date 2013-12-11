@@ -22,7 +22,8 @@ USE_CAMERA_STUB := false
 DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay
 
 # Legacy CFLAGS
-COMMON_GLOBAL_CFLAGS += -DMR0_AUDIO_BLOB 
+COMMON_GLOBAL_CFLAGS += -DMR0_AUDIO_BLOB -DICS_CAMERA_BLOB -DNEEDS_VECTORIMPL_SYMBOLS -DFORCE_SCREENSHOT_CPU_PATH
+BOARD_HAVE_PRE_KITKAT_AUDIO_BLOB := true
 
 # Board naming
 TARGET_NO_RADIOIMAGE := true
@@ -42,18 +43,22 @@ TARGET_CPU_SMP := true
 NEED_WORKAROUND_CORTEX_A9_745320 := true
 
 # Boot/Recovery image settings
-BOARD_KERNEL_CMDLINE :=
+BOARD_KERNEL_CMDLINE := androidboot.selinux=permissive
 BOARD_KERNEL_BASE := 0x10000000
 BOARD_KERNEL_PAGESIZE :=
 
 # EGL settings
-BOARD_EGL_NEEDS_LEGACY_FB := true
 BOARD_EGL_CFG := device/asus/tf201/prebuilt/egl.cfg
 USE_OPENGL_RENDERER := true
+BOARD_EGL_NEEDS_FNW := true
+BOARD_HAVE_PIXEL_FORMAT_INFO := true
+BOARD_EGL_WORKAROUND_BUG_10194508 := true
+BOARD_USE_MHEAP_SCREENSHOT := true
 
 # Misc display settings
 BOARD_USE_SKIA_LCDTEXT := true
 BOARD_NO_ALLOW_DEQUEUE_CURRENT_BUFFER := true
+
 
 # Bluetooth
 BOARD_HAVE_BLUETOOTH := true
@@ -97,19 +102,29 @@ BOARD_CUSTOM_BOOTIMG_MK := device/asus/tf201/releasetools/blob.mk
 TARGET_RELEASETOOLS_EXTENSIONS := device/asus/tf201/releasetools
 BOARD_HAS_NO_SELECT_BUTTON := true
 BOARD_HAS_LARGE_FILESYSTEM := true
-TARGET_RECOVERY_INITRC := device/asus/tf201/recovery/init.rc
 BOARD_HAS_SDCARD_INTERNAL := true
 TARGET_RECOVERY_FSTAB := device/asus/tf201/ramdisk/fstab.cardhu
 RECOVERY_FSTAB_VERSION := 2
+BOARD_RECOVERY_SWIPE := true
 
 # SELINUX Defines
 BOARD_SEPOLICY_DIRS := \
-    device/asus/tf201/selinux
+    device/asus/tf201/sepolicy
 
 BOARD_SEPOLICY_UNION := \
     file_contexts \
-    file.te \
+    genfs_contexts \
+    app.te \
+    btmacreader.te \
     device.te \
-    domain.te
+    drmserver.te \
+    init_shell.te \
+    file.te \
+    rild.te \
+    sensors_config.te \
+    shell.te \
+    surfaceflinger.te \
+    system.te \
+    zygote.te
 
 BOARD_HARDWARE_CLASS := device/asus/tf201/cmhw/

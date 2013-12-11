@@ -28,14 +28,16 @@ else
 	LOCAL_KERNEL := $(TARGET_PREBUILT_KERNEL)
 endif
 
-# Files needed for boot image
+# Files needed for boot/recovery image
 PRODUCT_COPY_FILES += \
     $(LOCAL_KERNEL):kernel \
     $(LOCAL_PATH)/ramdisk/init.cardhu.rc:root/init.cardhu.rc\
     $(LOCAL_PATH)/ramdisk/ueventd.cardhu.rc:root/ueventd.cardhu.rc \
     $(LOCAL_PATH)/ramdisk/init.cardhu.usb.rc:root/init.cardhu.usb.rc \
     $(LOCAL_PATH)/ramdisk/init.cardhu.cpu.rc:root/init.cardhu.cpu.rc \
-    $(LOCAL_PATH)/ramdisk/fstab.cardhu:root/fstab.cardhu
+    $(LOCAL_PATH)/ramdisk/fstab.cardhu:root/fstab.cardhu \
+    $(LOCAL_PATH)/recovery/init.recovery.cardhu.rc:root/init.recovery.cardhu.rc
+
 
 # Prebuilt configeration files
 PRODUCT_COPY_FILES += \
@@ -115,7 +117,9 @@ PRODUCT_PROPERTY_OVERRIDES := \
     wifi.supplicant_scan_interval=15 \
     ro.opengles.version=131072 \
     persist.sys.usb.config=mtp,adb \
-    ro.sf.lcd_density=160
+    ro.sf.lcd_density=160 \
+    ro.zygote.disable_gl_preload=true \
+    ro.bq.gpu_to_cpu_unsupported=1
 
 # Tegra 3 spacific overrides
 PRODUCT_PROPERTY_OVERRIDES += \
