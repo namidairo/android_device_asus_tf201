@@ -5,3 +5,6 @@ ro.carrier=wifi-only
 
 # don't preload OpenGL in Zygote, the Tegra drivers do not like it
 ro.zygote.disable_gl_preload=true
+
+# configure PRISM
+persist.tegra.didim.video = 5

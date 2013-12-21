@@ -16,13 +16,18 @@
 
 USE_CAMERA_STUB := false
 
+# Cardhu HAL libraries
+BOARD_HAL_STATIC_LIBRARIES := \
+    libdumpstate.cardhu \
+    libhealthd.cardhu
+
 # inherit from the proprietary version
 -include vendor/asus/tf201/BoardConfigVendor.mk
 
 DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay
 
 # Legacy CFLAGS
-COMMON_GLOBAL_CFLAGS += -DMR0_AUDIO_BLOB -DICS_CAMERA_BLOB -DNEEDS_VECTORIMPL_SYMBOLS -DFORCE_SCREENSHOT_CPU_PATH
+COMMON_GLOBAL_CFLAGS += -DMR0_AUDIO_BLOB -DICS_CAMERA_BLOB -DNEEDS_VECTORIMPL_SYMBOLS
 BOARD_HAVE_PRE_KITKAT_AUDIO_BLOB := true
 
 # Board naming
@@ -50,10 +55,9 @@ BOARD_KERNEL_PAGESIZE :=
 # EGL settings
 BOARD_EGL_CFG := device/asus/tf201/prebuilt/egl.cfg
 USE_OPENGL_RENDERER := true
-BOARD_EGL_NEEDS_FNW := true
 BOARD_HAVE_PIXEL_FORMAT_INFO := true
 BOARD_EGL_WORKAROUND_BUG_10194508 := true
-BOARD_USE_MHEAP_SCREENSHOT := true
+TARGET_DOESNT_USE_FENCE_SYNC := true
 
 # Misc display settings
 BOARD_USE_SKIA_LCDTEXT := true
@@ -66,9 +70,6 @@ BOARD_HAVE_BLUETOOTH_BCM := true
 BOARD_BLUEDROID_VENDOR_CONF := device/asus/tf201/bluetooth/vnd_tf201.txt
 BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR ?= device/asus/tf201/bluetooth
 
-# Support for dock battery
-TARGET_HAS_DOCK_BATTERY := true
-
 # Wifi related defines
 BOARD_WPA_SUPPLICANT_DRIVER := NL80211
 WPA_SUPPLICANT_VERSION := VER_0_8_X
@@ -78,7 +79,6 @@ BOARD_HOSTAPD_PRIVATE_LIB := lib_driver_cmd_bcmdhd
 BOARD_WLAN_DEVICE := bcmdhd
 WIFI_DRIVER_FW_PATH_PARAM := "/sys/module/bcmdhd/parameters/firmware_path"
 WIFI_DRIVER_FW_PATH_STA := "/system/vendor/firmware/fw_bcmdhd.bin"
-WIFI_DRIVER_FW_PATH_P2P := "/system/vendor/firmware/fw_bcmdhd_p2p.bin"
 WIFI_DRIVER_FW_PATH_AP := "/system/vendor/firmware/fw_bcmdhd_apsta.bin"
 
 TARGET_USERIMAGES_USE_EXT4 := true
@@ -88,7 +88,6 @@ BOARD_SYSTEMIMAGE_PARTITION_SIZE := 536870912
 BOARD_USERDATAIMAGE_PARTITION_SIZE := 29850022707
 BOARD_FLASH_BLOCK_SIZE := 4096
 TARGET_USERIMAGES_SPARSE_EXT_DISABLED := true
-
 
 # Try to build the kernel
 TARGET_KERNEL_SOURCE := kernel/asus/tf201
