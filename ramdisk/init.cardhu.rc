@@ -62,6 +62,9 @@ on post-fs-data
 
 on boot
 
+# fs
+    write /sys/module/sync/parameters/fsync_enabled 1
+
 # bluetooth
     # UART device
     chmod 0660 /dev/ttyHS2
