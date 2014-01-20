@@ -248,16 +248,6 @@ on property:ro.debuggable=1
 on property:ro.carrier=wifi-only
     stop ril-daemon
 
-# Write Wi-Fi Mac
-service wifimacwriter /system/bin/wifimacwriter
-    class main
-    oneshot
-
-# Write ASUS BD_ADDR to /data/misc/bluetooth
-service bdaddrwriter /system/bin/bdaddrwriter
-    class main
-    oneshot
-
 service wpa_supplicant /system/bin/wpa_supplicant \
     -Dnl80211 -iwlan0 -c/data/misc/wifi/wpa_supplicant.conf \
     -I/system/etc/wifi/wpa_supplicant_overlay.conf \

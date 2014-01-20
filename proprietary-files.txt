@@ -1,7 +1,6 @@
 bin/sensors-config
 bin/glgps
 bin/tf_daemon
-bin/bdaddrwriter
 
 etc/enctune.conf
 etc/u-blox.conf
