@@ -105,6 +105,7 @@ PRODUCT_PACKAGES += \
     tinymix \
     tinyplay \
     tinyrec \
+    wifimacwriter \
     com.cyanogenmod.asusdec \
     libasusdec_jni
 
