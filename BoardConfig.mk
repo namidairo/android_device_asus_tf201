@@ -95,12 +95,14 @@ TARGET_USERIMAGES_SPARSE_EXT_DISABLED := true
 TARGET_KERNEL_SOURCE := kernel/asus/tf201
 TARGET_KERNEL_CONFIG := tegra3_android_defconfig
 
+# Custom Tools
+TARGET_RELEASETOOL_OTA_FROM_TARGET_SCRIPT := device/asus/tf201/releasetools/tf201_ota_from_target_files
+
 # Prebuilt Kernel Fallback
 TARGET_PREBUILT_KERNEL := device/asus/tf201/kernel
 
 # Recovery Options
-BOARD_CUSTOM_BOOTIMG_MK := device/asus/tf201/releasetools/blob.mk
-TARGET_RELEASETOOLS_EXTENSIONS := device/asus/tf201/releasetools
+BOARD_CUSTOM_BOOTIMG_MK := device/asus/tf201/recovery/recovery.mk
 BOARD_HAS_NO_SELECT_BUTTON := true
 BOARD_HAS_LARGE_FILESYSTEM := true
 BOARD_HAS_SDCARD_INTERNAL := true
