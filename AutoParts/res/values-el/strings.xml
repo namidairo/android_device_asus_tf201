@@ -32,7 +32,7 @@
   <string name="kp_media_previous">Μέσα: Προηγούμενο</string>
   <string name="kp_media_next">Μέσα: Επόμενο</string>
   <string name="kp_screenshot">Λήψη στιγμιότυπου οθόνης</string>
-  <string name="kp_explorer">Εκκίνηση περιηγητή</string>
+  <string name="kp_explorer">Εκκίνηση browser</string>
   <string name="kp_settings">Εκκίνηση ρυθμίσεων</string>
   <string name="kp_caps_lock_on">Caps-Lock ενεργό</string>
   <string name="kp_caps_lock_off">Caps-Lock ανενεργό</string>
