@@ -98,6 +98,7 @@ PRODUCT_PACKAGES += \
     tinyplay \
     tinyrec \
     wifimacwriter \
+    gps.tegra \
     com.cyanogenmod.asusdec \
     libasusdec_jni
 
