@@ -104,14 +104,14 @@
 
     <!-- If a dock provides a lid switch, that lid can be removed. This
          setting is used to determine, whether lidOpenRotation has to be
-         applied. -->
+         applied.
     <bool name="config_hasRemovableLid">true</bool>
 
     <string name="config_deviceKeyHandlerLib" translatable="false">
         /system/framework/com.cyanogenmod.asusdec.jar</string>
 
     <string name="config_deviceKeyHandlerClass" translatable="false">
-        com.cyanogenmod.asusdec.KeyHandler</string>
+        com.cyanogenmod.asusdec.KeyHandler</string> -->
 
     <!-- Array of light sensor LUX values to define our levels for auto backlight brightness support.
          The N entries of this array define N + 1 zones as follows:
@@ -279,8 +279,8 @@
     <!-- If this is true, the screen will fade off. -->
     <bool name="config_animateScreenLights">false</bool>
 
-    <!-- Device supports LED flashlight -->
-    <bool name="config_enableTorch">true</bool>
+    <!-- Device supports LED flashlight 
+    <bool name="config_enableTorch">true</bool> -->
 
     <!-- SD card is hot-pluggable on this device -->
     <bool name="config_batterySdCardAccessibility">true</bool>

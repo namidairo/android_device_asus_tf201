@@ -18,8 +18,8 @@ USE_CAMERA_STUB := false
 
 # Cardhu HAL libraries
 BOARD_HAL_STATIC_LIBRARIES := \
-    libdumpstate.cardhu \
-    libhealthd.cardhu
+    libdumpstate.cardhu
+    #libhealthd.cardhu
 
 # inherit from the proprietary version
 -include vendor/asus/tf201/BoardConfigVendor.mk
@@ -119,8 +119,6 @@ BOARD_SEPOLICY_DIRS := \
 BOARD_SEPOLICY_UNION := \
     file_contexts \
     genfs_contexts \
-    app.te \
-    btmacreader.te \
     device.te \
     drmserver.te \
     init_shell.te \
@@ -128,8 +126,6 @@ BOARD_SEPOLICY_UNION := \
     rild.te \
     sensors_config.te \
     init_shell.te \
-    surfaceflinger.te \
-    system.te \
-    zygote.te
+    surfaceflinger.te
 
 BOARD_HARDWARE_CLASS := device/asus/tf201/cmhw/

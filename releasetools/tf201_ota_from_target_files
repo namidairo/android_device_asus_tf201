@@ -59,6 +59,11 @@ Usage:  ota_from_target_files [flags] input_target_files output_ota_package
   --override_device <device>
       Override device-specific asserts. Can be a comma-separated list.
 
+  --block
+      Generate a block-based OTA if possible. Will fall back to a
+      file-based OTA if the target_files is older and doesn't support
+      block-based OTAs.
+
 """
 
 import sys
@@ -806,6 +811,8 @@ def main(argv):
       OPTIONS.backuptool = bool(a.lower() == 'true')
     elif o in ("--override_device"):
       OPTIONS.override_device = a
+    elif o in ("--block"):
+      pass # I don't support this shit yet
     else:
       return False
     return True
@@ -821,7 +828,8 @@ def main(argv):
                                               "worker_threads=",
                                               "aslr_mode=",
                                               "backup=",
-                                              "override_device="],
+                                              "override_device=",
+                                              "block"],
                              extra_option_handler=option_handler)
 
   if len(args) != 2:
