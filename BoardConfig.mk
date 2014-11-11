@@ -127,7 +127,7 @@ BOARD_SEPOLICY_UNION := \
     file.te \
     rild.te \
     sensors_config.te \
-    shell.te \
+    init_shell.te \
     surfaceflinger.te \
     system.te \
     zygote.te
