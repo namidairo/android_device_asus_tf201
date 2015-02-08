@@ -114,7 +114,25 @@ PRODUCT_PACKAGES += \
     make_ext4fs \
     mkfs.f2fs \
     resize2fs \
-    setup_fs
+    setup_fs \
+    make_f2fs \
+    mff2fsuserimg.sh
+
+# Wifi
+PRODUCT_PACKAGES += \
+    hostapd \
+    dhcpcd.conf \
+    wpa_supplicant \
+    wpa_supplicant.conf
+
+BOARD_USERDATAIMAGE_FILE_SYSTEM_TYPE := f2fs
+$(warning "USING F2FS for userdata")
+
+# This ensures the needed build tools are available.
+# TODO: make non-linux builds happy with external/f2fs-tool; system/extras/f2fs_utils
+ifeq ($(HOST_OS),linux)
+TARGET_USERIMAGES_USE_F2FS := true
+endif
 
 # Propertys spacific for this device
 PRODUCT_PROPERTY_OVERRIDES := \
@@ -137,20 +155,51 @@ PRODUCT_PROPERTY_OVERRIDES += \
     ro.epad.model_id=00 \
     ro.product.model=TF201 \
 
-# media config xml file
+# Media files
 PRODUCT_COPY_FILES += \
+    frameworks/av/media/libstagefright/data/media_codecs_google_audio.xml:system/etc/media_codecs_google_audio.xml \
+    frameworks/av/media/libstagefright/data/media_codecs_google_telephony.xml:system/etc/media_codecs_google_telephony.xml \
+    frameworks/av/media/libstagefright/data/media_codecs_google_video.xml:system/etc/media_codecs_google_video.xml \
+    frameworks/av/media/libstagefright/data/media_codecs_ffmpeg.xml:system/etc/media_codecs_ffmpeg.xml \
+    device/asus/tf201/media_codecs.xml:system/etc/media_codecs.xml \
     device/asus/tf201/media_profiles.xml:system/etc/media_profiles.xml
 
-# media codec config xml file
-PRODUCT_COPY_FILES += \
-    device/asus/tf201/media_codecs.xml:system/etc/media_codecs.xml
+# SELINUX Defines
+BOARD_SEPOLICY_DIRS := \
+    device/asus/tf201/sepolicy
+
+BOARD_SEPOLICY_UNION += \
+    file_contexts \
+    property_contexts \
+    service_contexts \
+        genfs_contexts \
+        bluetooth.te \
+        device.te \
+        domain.te \
+        drmserver.te \
+        file.te \
+        gpsd.te \
+        init.te \
+        init_shell.te \
+        keystore.te \
+        lmkd.te \
+        mediaserver.te \
+        property.te \
+        recovery.te \
+        rild.te \
+        sensors_config.te \
+        surfaceflinger.te \
+        system_app.te \
+        system_server.te \
+        ueventd.te \
+        vold.te
 
 # audio policy configuration
 PRODUCT_COPY_FILES += \
     device/asus/tf201/audio_policy.conf:system/etc/audio_policy.conf
 
 # Inherit tablet dalvik settings
-$(call inherit-product, frameworks/native/build/tablet-dalvik-heap.mk)
+$(call inherit-product, frameworks/native/build/tablet-7in-hdpi-1024-dalvik-heap.mk)
 
 # Call the vendor to setup propiatory files
 $(call inherit-product-if-exists, vendor/asus/tf201/tf201-vendor.mk)

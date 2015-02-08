@@ -27,9 +27,10 @@ BOARD_HAL_STATIC_LIBRARIES := \
 DEVICE_PACKAGE_OVERLAYS += $(LOCAL_PATH)/overlay
 
 # Legacy CFLAGS
-COMMON_GLOBAL_CFLAGS += -DMR0_AUDIO_BLOB -DICS_CAMERA_BLOB -DNEEDS_VECTORIMPL_SYMBOLS
+COMMON_GLOBAL_CFLAGS += -DMR0_AUDIO_BLOB -DICS_CAMERA_BLOB -DNEEDS_VECTORIMPL_SYMBOLS -DADD_LEGACY_MEMORY_DEALER_CONSTRUCTOR_SYMBOL -DADD_LEGACY_SET_POSITION_SYMBOL -DADD_LEGACY_ACQUIRE_BUFFER_SYMBOL
 BOARD_HAVE_PRE_KITKAT_AUDIO_BLOB := true
 BOARD_HAVE_PRE_KITKAT_AUDIO_POLICY_BLOB := true
+USE_LEGACY_AUDIO_POLICY := 1
 
 # Board naming
 TARGET_NO_RADIOIMAGE := true
@@ -44,6 +45,7 @@ TARGET_CPU_ABI2 := armeabi
 TARGET_ARCH_VARIANT := armv7-a-neon
 TARGET_CPU_VARIANT := cortex-a9
 TARGET_CPU_SMP := true
+TARGET_NEEDS_NON_PIE_SUPPORT := true
 
 # Avoid the generation of ldrcc instructions
 NEED_WORKAROUND_CORTEX_A9_745320 := true
@@ -85,13 +87,11 @@ WIFI_DRIVER_FW_PATH_STA := "/system/vendor/firmware/fw_bcmdhd.bin"
 WIFI_DRIVER_FW_PATH_AP := "/system/vendor/firmware/fw_bcmdhd_apsta.bin"
 
 TARGET_USERIMAGES_USE_EXT4 := true
-TARGET_USERIMAGES_USE_F2FS := true
 BOARD_BOOTIMAGE_PARTITION_SIZE := 8388608
 BOARD_RECOVERYIMAGE_PARTITION_SIZE := 8388608
 BOARD_SYSTEMIMAGE_PARTITION_SIZE := 536870912
 BOARD_USERDATAIMAGE_PARTITION_SIZE := 29850022707
 BOARD_FLASH_BLOCK_SIZE := 4096
-TARGET_USERIMAGES_SPARSE_EXT_DISABLED := true
 
 # Try to build the kernel
 TARGET_KERNEL_SOURCE := kernel/asus/tf201
@@ -111,21 +111,6 @@ BOARD_HAS_SDCARD_INTERNAL := true
 TARGET_RECOVERY_FSTAB := device/asus/tf201/ramdisk/fstab.cardhu
 RECOVERY_FSTAB_VERSION := 2
 BOARD_RECOVERY_SWIPE := true
-
-# SELINUX Defines
-BOARD_SEPOLICY_DIRS := \
-    device/asus/tf201/sepolicy
-
-BOARD_SEPOLICY_UNION := \
-    file_contexts \
-    genfs_contexts \
-    device.te \
-    drmserver.te \
-    init_shell.te \
-    file.te \
-    rild.te \
-    sensors_config.te \
-    init_shell.te \
-    surfaceflinger.te
+TARGET_RECOVERY_FSTYPE_MOUNT_OPTIONS := ext4=max_batch_time=0,commit=1,data=ordered,barrier=1,errors=panic,nodelalloc|f2fs=errors=recover
 
 BOARD_HARDWARE_CLASS := device/asus/tf201/cmhw/
