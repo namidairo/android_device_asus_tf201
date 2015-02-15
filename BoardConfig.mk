@@ -18,8 +18,8 @@ USE_CAMERA_STUB := false
 
 # Cardhu HAL libraries
 BOARD_HAL_STATIC_LIBRARIES := \
-    libdumpstate.cardhu
-    #libhealthd.cardhu
+    libdumpstate.cardhu \
+    libhealthd.cardhu
 
 # inherit from the proprietary version
 -include vendor/asus/tf201/BoardConfigVendor.mk
