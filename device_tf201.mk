@@ -118,6 +118,11 @@ PRODUCT_PACKAGES += \
     make_f2fs \
     mff2fsuserimg.sh
 
+# Audio
+PRODUCT_PACKAGES += \
+    audio.primary.tegra \
+    audio_policy.tegra
+
 # Wifi
 PRODUCT_PACKAGES += \
     hostapd \
