@@ -84,11 +84,8 @@ PRODUCT_TAGS += dalvik.gc.type-precise
 # Extra packages to build for this device
 PRODUCT_PACKAGES += \
     librs_jni \
-    com.android.future.usb.accessory \
     make_ext4fs \
     setup_fs \
-    audio.a2dp.default \
-    audio.usb.default \
     libaudioutils \
     libinvensense_mpl \
     AutoParts_tfp \
@@ -121,7 +118,11 @@ PRODUCT_PACKAGES += \
 # Audio
 PRODUCT_PACKAGES += \
     audio.primary.tegra \
-    audio_policy.tegra
+    audio_policy.tegra \
+    audio.a2dp.default \
+    audio.usb.default \
+    audio.r_submix.default \
+    com.android.future.usb.accessory
 
 # Wifi
 PRODUCT_PACKAGES += \
@@ -139,7 +140,7 @@ ifeq ($(HOST_OS),linux)
 TARGET_USERIMAGES_USE_F2FS := true
 endif
 
-# Propertys spacific for this device
+# Propertys specific for this device
 PRODUCT_PROPERTY_OVERRIDES := \
     wifi.interface=wlan0 \
     wifi.supplicant_scan_interval=15 \
@@ -149,12 +150,12 @@ PRODUCT_PROPERTY_OVERRIDES := \
     ro.zygote.disable_gl_preload=true \
     ro.bq.gpu_to_cpu_unsupported=1
 
-# Tegra 3 spacific overrides
+# Tegra 3 specific overrides
 PRODUCT_PROPERTY_OVERRIDES += \
     persist.tegra.nvmmlite=1 \
     tf.enable=y
 
-# Prime spacific overrides
+# Prime specific overrides
 PRODUCT_PROPERTY_OVERRIDES += \
     ro.epad.model=TF201 \
     ro.epad.model_id=00 \
@@ -177,27 +178,27 @@ BOARD_SEPOLICY_UNION += \
     file_contexts \
     property_contexts \
     service_contexts \
-        genfs_contexts \
-        bluetooth.te \
-        device.te \
-        domain.te \
-        drmserver.te \
-        file.te \
-        gpsd.te \
-        init.te \
-        init_shell.te \
-        keystore.te \
-        lmkd.te \
-        mediaserver.te \
-        property.te \
-        recovery.te \
-        rild.te \
-        sensors_config.te \
-        surfaceflinger.te \
-        system_app.te \
-        system_server.te \
-        ueventd.te \
-        vold.te
+    genfs_contexts \
+    bluetooth.te \
+    device.te \
+    domain.te \
+    drmserver.te \
+    file.te \
+    gpsd.te \
+    init.te \
+    init_shell.te \
+    keystore.te \
+    lmkd.te \
+    mediaserver.te \
+    property.te \
+    recovery.te \
+    rild.te \
+    sensors_config.te \
+    surfaceflinger.te \
+    system_app.te \
+    system_server.te \
+    ueventd.te \
+    vold.te
 
 # audio policy configuration
 PRODUCT_COPY_FILES += \
@@ -212,7 +213,7 @@ $(call inherit-product-if-exists, vendor/asus/tf201/tf201-vendor.mk)
 # Copy bcm4329 firmware
 $(call inherit-product-if-exists, hardware/broadcom/wlan/bcmdhd/firmware/bcm4329/device-bcm.mk)
 
-# Device nameing
+# Device naming
 PRODUCT_BUILD_PROP_OVERRIDES += BUILD_UTC_DATE=0
 PRODUCT_NAME := tf201
 PRODUCT_DEVICE := tf201
