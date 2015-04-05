@@ -2,3 +2,8 @@
 allow init self:capability {
       sys_module
 };
+
+# for wifimacwriter
+allow init vfat:dir search;
+allow init vfat:file {read open getattr};
+
